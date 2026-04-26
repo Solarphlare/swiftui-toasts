@@ -45,9 +45,11 @@ internal struct ToastView: View {
             removal: .opacity
                 .animation(.spring(duration: 0.3))
         ))
+        .font(model.font)
       if let button = model.button {
         buttonView(button)
           .padding([.top, .bottom, .trailing], 10)
+          .font(model.font)
       } else {
         Color.clear
           .frame(width: 14)

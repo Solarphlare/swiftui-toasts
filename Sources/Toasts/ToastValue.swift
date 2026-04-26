@@ -6,6 +6,7 @@ public struct ToastValue {
   internal var icon: AnyView?
   internal var message: String
   internal var button: ToastButton?
+  internal var font: Font?
   /// If nil, the toast will persist and not disappear. Used when displaying a loading toast.
   internal var duration: TimeInterval?
 
@@ -15,16 +16,19 @@ public struct ToastValue {
   ///   - icon: An optional view to display as an icon in the toast.
   ///   - message: The text content of the toast.
   ///   - button: An optional action button to display in the toast.
+  ///   - font: An optional custom font for the toast's text.
   ///   - duration: How long the toast should be displayed before automatically dismissing, in seconds. Clamped between 0 and 10 seconds. Default is 3.0.
   public init(
     icon: (any View)? = nil,
     message: String,
     button: ToastButton? = nil,
+    font: Font? = nil,
     duration: TimeInterval = 3.0
   ) {
     self.icon = icon.map { AnyView($0) }
     self.message = message
     self.button = button
+    self.font = font
     self.duration = min(max(0, duration), 10)
   }
   @_disfavoredOverload
