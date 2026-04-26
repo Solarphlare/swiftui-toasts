@@ -7,6 +7,7 @@ public struct ToastValue {
   internal var message: String
   internal var button: ToastButton?
   internal var font: Font?
+  internal var backgroundColor: Color
   /// If nil, the toast will persist and not disappear. Used when displaying a loading toast.
   internal var duration: TimeInterval?
 
@@ -23,6 +24,7 @@ public struct ToastValue {
     message: String,
     button: ToastButton? = nil,
     font: Font? = nil,
+    backgroundColor: Color? = nil,
     duration: TimeInterval = 3.0
   ) {
     self.icon = icon.map { AnyView($0) }
@@ -30,6 +32,13 @@ public struct ToastValue {
     self.button = button
     self.font = font
     self.duration = min(max(0, duration), 10)
+      
+    if let backgroundColor {
+      self.backgroundColor = backgroundColor
+    }
+    else {
+      self.backgroundColor = .toastBackground
+    }
   }
   @_disfavoredOverload
   internal init(
@@ -41,6 +50,7 @@ public struct ToastValue {
     self.icon = icon.map { AnyView($0) }
     self.message = message
     self.button = button
+    self.backgroundColor = .toastBackground
     self.duration = duration
   }
 }

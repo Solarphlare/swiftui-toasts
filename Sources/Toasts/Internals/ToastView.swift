@@ -17,7 +17,7 @@ internal struct ToastView: View {
       else {
           main
             ._background {
-              Capsule().fill(Color.toastBackground)
+                Capsule().fill(model.backgroundColor)
             }
             .frame(height: 48)
             .compositingGroup()
